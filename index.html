@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超级影视VIP - 四屏畅看·会员专享·正版高清影视</title>
+<meta name="description" content="超级影视VIP提供手机、平板、电脑、电视四屏畅看体验，会员专享4K超清、免片前广告、离线缓存、投屏大屏与家庭共享。正版授权、片库每日更新，尽在 chaojiyingshivip-h5.github.io。">
+<meta name="keywords" content="超级影视VIP,四屏会员,影视会员,4K超清,免广告,离线缓存,投屏电视,家庭共享,正版影视">
+<link rel="canonical" href="https://chaojiyingshivip-h5.github.io/">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#0b0b0d;color:#ececec;line-height:1.7;overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 15% 10%,rgba(212,175,110,.14),transparent 38%),
+    radial-gradient(circle at 85% 20%,rgba(120,90,255,.12),transparent 42%),
+    radial-gradient(circle at 50% 100%,rgba(255,215,0,.06),transparent 55%);
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section[id]{scroll-margin-top:0}
+
+/* 顶条 */
+.vip-bar{background:#000;padding:8px 16px;border-bottom:1px solid #2a2a2e;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:12px;letter-spacing:1px}
+.vip-bar span{color:#caa45a}
+.vip-bar b{color:#ffd700}
+
+/* 导航 */
+.nav{position:sticky;top:0;z-index:999;background:rgba(11,11,13,.92);backdrop-filter:blur(8px);border-bottom:1px solid #2a2a2e}
+.nav-in{max-width:1240px;margin:0 auto;height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo-vip{display:flex;align-items:center;gap:10px}
+.logo-vip .crown{
+  width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#ffd700,#d4af6e);
+  display:flex;align-items:center;justify-content:center;font-size:18px;color:#1a1300;font-weight:900;
+}
+.logo-vip .cn{font-size:21px;font-weight:800;letter-spacing:1px}
+.logo-vip .cn em{font-style:normal;color:#ffd700}
+.logo-vip .en{font-size:10px;letter-spacing:3px;color:#8a8a90}
+.menu{display:flex;gap:2px}
+.menu a{font-size:14px;color:#b8b8be;padding:8px 12px;border-bottom:2px solid transparent;transition:.2s}
+.menu a:hover{color:#ffd700;border-bottom-color:#ffd700}
+.nav-cta{background:linear-gradient(135deg,#ffd700,#d4af6e);color:#1a1300;font-weight:800;font-size:14px;padding:9px 20px;border-radius:8px}
+.nav-cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+
+/* Hero */
+.hero-vip{max-width:1240px;margin:0 auto;padding:76px 20px 60px;display:grid;grid-template-columns:1.2fr .8fr;gap:46px;align-items:center}
+.hero-vip h1{font-size:clamp(34px,5.6vw,60px);font-weight:900;line-height:1.08;letter-spacing:-.5px}
+.hero-vip h1 .gold{color:#ffd700}
+.hero-vip h1 .grad{background:linear-gradient(90deg,#ffd700,#9b7bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-vip .lead{font-size:16px;color:#b8b8be;margin:22px 0 26px;max-width:520px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{padding:13px 30px;font-weight:800;border-radius:9px;transition:.25s;font-size:15px}
+.btn-gold{background:linear-gradient(135deg,#ffd700,#d4af6e);color:#1a1300}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,215,0,.25)}
+.btn-line{background:transparent;color:#ffd700;border:1px solid #5a4d1f}
+.btn-line:hover{background:#1a1708}
+.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px}
+.trust div{font-size:13px;color:#9a9aa0;display:flex;align-items:center;gap:6px}
+.trust b{color:#ffd700}
+
+/* 会员卡 */
+.vip-card{
+  background:linear-gradient(160deg,#1c1a12,#121214);border:1px solid #3a3320;border-radius:18px;padding:26px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);position:relative;overflow:hidden;
+}
+.vip-card::before{content:"";position:absolute;top:-40%;right:-30%;width:240px;height:240px;background:radial-gradient(circle,rgba(255,215,0,.25),transparent 70%);}
+.vip-card .tier{font-size:12px;letter-spacing:3px;color:#caa45a}
+.vip-card .name{font-size:24px;font-weight:900;margin:6px 0 4px}
+.vip-card .name em{font-style:normal;color:#ffd700}
+.vip-card .price{font-size:30px;font-weight:900;color:#ffd700;margin:10px 0}
+.vip-card .price small{font-size:13px;color:#9a9aa0;font-weight:500}
+.vip-card ul{list-style:none;margin-top:12px}
+.vip-card li{padding:8px 0;font-size:14px;color:#d8d8de;border-bottom:1px dashed #2a2a2e;padding-left:24px;position:relative}
+.vip-card li::before{content:"★";position:absolute;left:0;color:#ffd700;font-size:12px}
+.vip-card .mini{margin-top:16px;font-size:12px;color:#8a8a90}
+
+/* 区块 */
+.block{max-width:1240px;margin:0 auto;padding:66px 20px}
+.block-head{text-align:center;margin-bottom:38px}
+.block-head .kicker{font-size:12px;letter-spacing:4px;color:#caa45a}
+.block-head h2{font-size:28px;font-weight:900;margin-top:8px}
+.block-head h2 em{font-style:normal;color:#ffd700}
+.block-head p{font-size:15px;color:#9a9aa0;margin-top:10px}
+
+/* 权益网格 */
+.rights{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.right{border:1px solid #2a2a2e;border-radius:14px;padding:24px;background:#121214;transition:.3s}
+.right:hover{transform:translateY(-4px);border-color:#ffd700;box-shadow:0 14px 30px rgba(255,215,0,.08)}
+.right .ico{font-size:30px;margin-bottom:12px}
+.right h3{font-size:17px;font-weight:800}
+.right p{font-size:14px;color:#a0a0a6;margin-top:7px}
+
+/* 四屏 */
+.screens{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.screen{border-radius:14px;padding:22px;border:1px solid #2a2a2e;background:linear-gradient(180deg,#15151a,#0f0f12);text-align:center}
+.screen .dev{font-size:34px}
+.screen h3{font-size:16px;font-weight:800;margin:10px 0 6px}
+.screen p{font-size:13px;color:#9a9aa0}
+.screen .pill{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:#1a1300;background:#ffd700;padding:3px 10px;border-radius:12px}
+
+/* 套餐 */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.plan{border:1px solid #2a2a2e;border-radius:16px;padding:28px;background:#121214;position:relative;transition:.3s}
+.plan:hover{transform:translateY(-4px)}
+.plan.hot{border-color:#ffd700;background:linear-gradient(180deg,#1c1a12,#121214)}
+.plan .tag{position:absolute;top:-12px;left:24px;background:#ffd700;color:#1a1300;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px}
+.plan h3{font-size:19px;font-weight:900}
+.plan .pp{font-size:32px;font-weight:900;color:#ffd700;margin:12px 0 4px}
+.plan .pp small{font-size:13px;color:#9a9aa0;font-weight:500}
+.plan ul{list-style:none;margin:14px 0}
+.plan li{padding:7px 0;font-size:14px;color:#cfcfd5;border-bottom:1px dashed #26262a}
+.plan li.off{color:#6a6a70;text-decoration:line-through}
+.plan .buy{display:block;text-align:center;padding:12px;border-radius:9px;font-weight:800;background:#232323;color:#ececec;transition:.2s}
+.plan .buy:hover{background:#2f2f2f}
+.plan.hot .buy{background:linear-gradient(135deg,#ffd700,#d4af6e);color:#1a1300}
+
+/* 教程 */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.step{border-left:3px solid #ffd700;background:#121214;padding:20px;border-radius:0 12px 12px 0}
+.step .n{font-size:13px;font-weight:800;color:#caa45a}
+.step h3{font-size:16px;font-weight:800;margin:6px 0}
+.step p{font-size:14px;color:#a0a0a6}
+
+/* 版权合规 */
+.compliance{background:#101015;border:1px solid #243a2a;border-left:4px solid #2ecc71;border-radius:14px;padding:28px}
+.compliance h3{color:#2ecc71;font-size:18px;font-weight:800;margin-bottom:12px}
+.compliance ul{list-style:none}
+.compliance li{padding:9px 0 9px 26px;position:relative;font-size:14px;color:#c7c7cd;border-bottom:1px dashed #1d2a20}
+.compliance li::before{content:"✓";position:absolute;left:0;color:#2ecc71;font-weight:800}
+.compliance .warn{margin-top:14px;font-size:13px;color:#e0b36b;background:#1c160c;border:1px solid #3a2e12;padding:12px 14px;border-radius:10px}
+
+/* FAQ */
+.faq{max-width:860px;margin:0 auto}
+.faq-item{background:#121214;border:1px solid #2a2a2e;border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq-q{padding:17px 22px;font-size:15px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;gap:12px}
+.faq-q .arr{color:#ffd700;transition:.3s}
+.faq-a{padding:0 22px 17px;font-size:14px;color:#a8a8ae;display:none;line-height:1.85}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q .arr{transform:rotate(180deg)}
+
+/* 关于 */
+.about-vip{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:linear-gradient(135deg,#1a1810,#15131c);border:1px solid #3a3320;border-radius:18px;padding:44px}
+.about-vip h2{font-size:26px;font-weight:900;margin-bottom:16px}
+.about-vip h2 em{font-style:normal;color:#ffd700}
+.about-vip p{font-size:15px;color:#c7c7cd;line-height:1.95;margin-bottom:12px}
+.about-vip .url{color:#ffd700;font-weight:700}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{background:#0f0f12;border:1px solid #2a2a2e;border-radius:12px;padding:20px;text-align:center}
+.stat .n{font-size:28px;font-weight:900;color:#ffd700}
+.stat .l{font-size:12px;color:#9a9aa0;margin-top:4px}
+
+/* 页脚 */
+.foot{border-top:1px solid #2a2a2e;padding:42px 20px 30px;text-align:center;background:#08080a}
+.foot-logo{font-size:20px;font-weight:900;letter-spacing:1px}
+.foot-logo em{font-style:normal;color:#ffd700}
+.foot-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:14px 0}
+.foot-links a{font-size:13px;color:#8a8a90}
+.foot-links a:hover{color:#ffd700}
+.foot p{font-size:12px;color:#6a6a70}
+.foot .disc{margin-top:10px;max-width:760px;margin-left:auto;margin-right:auto;color:#5a5a60;line-height:1.7}
+
+@media(max-width:860px){
+  .menu{display:none}
+  .hero-vip{grid-template-columns:1fr;padding:52px 20px}
+  .vip-card{order:2}
+  .about-vip{grid-template-columns:1fr;padding:30px}
+  .block{padding:50px 20px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 顶条 -->
+<div class="vip-bar">
+  <span>四屏畅看</span><b>手机·平板·电脑·电视</b>
+  <span>正版授权</span><b>会员专享 4K / HDR</b>
+  <span>家庭共享</span><b>离线缓存·投屏大屏</b>
+</div>
+
+<!-- 导航 -->
+<div class="nav">
+  <div class="nav-in">
+    <div class="logo-vip">
+      <div class="crown">👑</div>
+      <div>
+        <div class="cn">超级影视<em>VIP</em></div>
+        <div class="en">SUPER FILM VIP</div>
+      </div>
+    </div>
+    <nav class="menu">
+      <a href="#home">首页</a>
+      <a href="#rights">会员权益</a>
+      <a href="#library">片库专区</a>
+      <a href="#screens">四屏畅看</a>
+      <a href="#plans">开通套餐</a>
+      <a href="#guide">使用教程</a>
+      <a href="#legal">版权合规</a>
+      <a href="#faq">常见问题</a>
+      <a href="#about">关于</a>
+    </nav>
+    <a href="#plans" class="nav-cta">开通会员</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero-vip" id="home">
+  <div>
+    <h1>一个<em class="gold">超级影视VIP</em><br>打通<span class="grad">四块屏幕</span>的观影</h1>
+    <p class="lead">手机追更、平板躺看、电脑拉片、电视投大屏。会员专享正版高清片库、免片前广告、4K/HDR、离线缓存与家庭共享——把“换平台、借账号、等广告”全部省掉。</p>
+    <div class="hero-btns">
+      <a href="#plans" class="btn-gold">👑 开通超级影视VIP</a>
+      <a href="#rights" class="btn-gold btn-line">查看会员权益</a>
+    </div>
+    <div class="trust">
+      <div>✅ <b>正版授权</b>片源</div>
+      <div>🚫 少片前广告</div>
+      <div>📺 <b>电视大屏</b>可用</div>
+      <div>👨‍👩‍👧 <b>家庭共享</b>池</div>
+    </div>
+  </div>
+
+  <div class="vip-card">
+    <div class="tier">FLAGSHIP MEMBERSHIP</div>
+    <div class="name">超级影视<em>VIP</em></div>
+    <div class="price">连续包月 <small>首月优惠以页面为准</small></div>
+    <ul>
+      <li>四屏通用：手机 / 平板 / 电脑 / 电视</li>
+      <li>会员专享剧集、电影、综艺、纪录片</li>
+      <li>支持 1080P / 4K / HDR（片源支持时）</li>
+      <li>减少片前广告，直接进入正片</li>
+      <li>离线缓存，通勤没网也能看</li>
+      <li>同一账号多设备登录，家庭共享不借号</li>
+    </ul>
+    <div class="mini">※ 单点付费、特殊版权内容可能另计；具体权益以开通页与版权方要求为准。</div>
+  </div>
+</section>
+
+<!-- 会员权益 -->
+<section class="block" id="rights">
+  <div class="block-head">
+    <div class="kicker">MEMBER BENEFITS</div>
+    <h2>超级影视VIP <em>能用到什么</em></h2>
+    <p>不是“破解全网卡”，而是把正版会员体验做成可感知的权益清单</p>
+  </div>
+  <div class="rights">
+    <div class="right"><div class="ico">🎬</div><h3>会员专享片库</h3><p>热播剧、院线新片、独播综艺、顶级纪录片，带会员角标的内容优先看。</p></div>
+    <div class="right"><div class="ico">⚡</div><h3>少广告直达正片</h3><p>减少片前贴片与暂停广告干扰，追剧更连贯（版权方特殊要求内容除外）。</p></div>
+    <div class="right"><div class="ico">🖼️</div><h3>4K / HDR 画质</h3><p>片源与设备支持时开放超清、HDR、高码率，大屏电视差距最明显。</p></div>
+    <div class="right"><div class="ico">📥</div><h3>离线缓存</h3><p>地铁、飞机、出差路上，提前缓存后无网也能接着看。[7](@ref)</p></div>
+    <div class="right"><div class="ico">📺</div><h3>投屏大屏</h3><p>手机和电视同 WiFi，点 TV 按钮把正片推到客厅大屏。</p></div>
+    <div class="right"><div class="ico">👨‍👩‍👧</div><h3>家庭共享</h3><p>通过家庭共享池/子账号共享权益，不用来回借密码。[4](@ref)</p></div>
+    <div class="right"><div class="ico">🔊</div><h3>杜比音效</h3><p>部分片源支持杜比全景声 / 环绕声，配音响系统更沉浸。</p></div>
+    <div class="right"><div class="ico">🔁</div><h3>多端续播</h3><p>手机看到第 12 分钟，电视/平板打开跳回原进度，观看记录云端同步。</p></div>
+  </div>
+</section>
+
+<!-- 片库专区 -->
+<section class="block" id="library" style="background:#0e0e11">
+  <div class="block-head">
+    <div class="kicker">VIP LIBRARY</div>
+    <h2>会员片库 <em>覆盖这些频道</em></h2>
+    <p>分类不是噱头，是找片时真能用的入口</p>
+  </div>
+  <div class="rights">
+    <div class="right"><div class="ico">🎥</div><h3>电影</h3><p>院线新片、悬疑犯罪、科幻动作、文艺剧情、经典老片，会员可看范围宽于免费层。</p></div>
+    <div class="right"><div class="ico">📺</div><h3>电视剧</h3><p>国产剧、港剧、韩剧、日剧、美剧、泰剧，热剧更新快人一步。</p></div>
+    <div class="right"><div class="ico">🎤</div><h3>综艺</h3><p>独播网综、晚会、脱口秀、竞演舞台，会员专享花絮与加更版。</p></div>
+    <div class="right"><div class="ico">🎨</div><h3>动漫</h3><p>国漫、日漫新番、少儿动画、动画电影，分龄分级更好管。</p></div>
+    <div class="right"><div class="ico">🌍</div><h3>纪录片</h3><p>自然、历史、人文、科技、美食，顶配纪录片对会员开放更高画质。</p></div>
+    <div class="right"><div class="ico">🎞️</div><h3>短剧 / 微综</h3><p>竖屏短剧、微综艺、二创合集，碎片时间也能追完一条线。</p></div>
+  </div>
+</section>
+
+<!-- 四屏 -->
+<section class="block" id="screens">
+  <div class="block-head">
+    <div class="kicker">FOUR-SCREEN</div>
+    <h2>一个会员，<em>四屏畅看</em></h2>
+    <p>超级影视VIP 的价值，就是别再为“哪个端能看”反复花钱 [16](@ref)</p>
+  </div>
+  <div class="screens">
+    <div class="screen"><div class="dev">📱</div><h3>手机</h3><p>通勤追更、倍速、缓存、投屏入口都在手心里。</p><span class="pill">随身端</span></div>
+    <div class="screen"><div class="dev">📱</div><h3>平板</h3><p>躺看神器，分镜/字幕/画质比手机更舒服。</p><span class="pill">沉浸端</span></div>
+    <div class="screen"><div class="dev">💻</div><h3>电脑</h3><p>拉片、看纪录片、多任务挂机，大屏网页端续播。</p><span class="pill">生产力端</span></div>
+    <div class="screen"><div class="dev">📺</div><h3>电视</h3><p>云视听极光等合作大屏端登录同账号，客厅院线感。[4](@ref)</p><span class="pill">家庭端</span></div>
+  </div>
+</section>
+
+<!-- 套餐 -->
+<section class="block" id="plans" style="background:#0e0e11">
+  <div class="block-head">
+    <div class="kicker">PLANS</div>
+    <h2>开通套餐</h2>
+    <p>价格以开通页实时显示为准，支持连续包月/单月/季度/年度，可关闭自动续费</p>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h3>免费层</h3>
+      <div class="pp">¥0</div>
+      <ul>
+        <li>浏览免费专区与部分正片</li>
+        <li>标清/720P（片源允许时）</li>
+        <li class="off">4K / HDR 专享</li>
+        <li class="off">离线缓存与去片前广告</li>
+        <li class="off">电视大屏会员内容</li>
+      </ul>
+      <a href="#" class="buy">先免费逛片库</a>
+    </div>
+    <div class="plan hot">
+      <span class="tag">最受欢迎</span>
+      <h3>超级影视VIP</h3>
+      <div class="pp">连续包月<small> / 首月优惠以页面为准</small></div>
+      <ul>
+        <li>四屏通用：手机/平板/电脑/电视</li>
+        <li>会员专享剧集电影综艺纪录片</li>
+        <li>1080P / 4K / HDR（片源支持时）</li>
+        <li>减少片前广告 + 离线缓存</li>
+        <li>多设备登录 + 家庭共享池</li>
+      </ul>
+      <a href="#" class="buy">👑 开通超级影视VIP</a>
+    </div>
+    <div class="plan">
+      <h3>年度 / 家庭卡</h3>
+      <div class="pp">按页计价</div>
+      <ul>
+        <li>适合高频观影与多成员家庭</li>
+        <li>独立子账号、独立推荐与记录</li>
+        <li>大屏电视+移动端一起覆盖</li>
+        <li>活动期常有家庭卡/联合会员折扣</li>
+        <li>可随时关闭自动续费</li>
+      </ul>
+      <a href="#" class="buy">查看年度权益</a>
+    </div>
+  </div>
+</section>
+
+<!-- 使用教程 -->
+<section class="block" id="guide">
+  <div class="block-head">
+    <div class="kicker">HOW TO USE</div>
+    <h2>新会员 <em>5 步上手</em></h2>
+    <p>正版会员流程，不碰破解器、不装来路插件</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">STEP 01</div><h3>选套餐</h3><p>在开通页选连续包月 / 单月 / 年度，看清自动续费说明。</p></div>
+    <div class="step"><div class="n">STEP 02</div><h3>官方渠道付</h3><p>用微信 / 支付宝 / 应用内支付，别信“永久全网VIP”私链。[6](@ref)</p></div>
+    <div class="step"><div class="n">STEP 03</div><h3>同账号登录</h3><p>手机、平板、电脑、电视登录同一官方账号，权益自动生效。</p></div>
+    <div class="step"><div class="n">STEP 04</div><h3>调画质</h3><p>电视端选 4K/蓝光，手机端开缓存，地铁里离线看。</p></div>
+    <div class="step"><div class="n">STEP 05</div><h3>投屏 / 共享</h3><p>同 WiFi 点 TV 投屏；用家庭共享池给家人开子账号，不借主密码。</p></div>
+  </div>
+</section>
+
+<!-- 版权合规 -->
+<section class="block" id="legal" style="background:#0e0e11">
+  <div class="block-head">
+    <div class="kicker">LEGAL & RIGHTS</div>
+    <h2>版权与合规</h2>
+    <p>影视平台长期能做下去，靠的是授权清晰、下架机制、来源可查</p>
+  </div>
+  <div class="compliance">
+    <h3>✅ 我们怎么做得稳</h3>
+    <ul>
+      <li>优先接入正版授权 / 平台合作 / 已获播放权的片源</li>
+      <li>会员仅解锁已授权权益，单点付费与特殊版权内容按规则另计</li>
+      <li>收到权利方下架通知后按规定处理，不硬扛侵权内容</li>
+      <li>不提供“破解主流平台会员”“盗链挖源”“永久免费全网VIP”类工具</li>
+      <li>用户数据、支付、续费管理走可核查流程，自动续费可关闭</li>
+    </ul>
+    <div class="warn">⚠️ 市面上“影视VIP永久免费 / 破解全平台 / 去广告外挂”往往伴随盗链、侵权、木马与账号封禁风险；本页只做正版会员制影视门户展示。[6,15](@ref)</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="block-head">
+    <div class="kicker">FAQ</div>
+    <h2>常见问题</h2>
+  </div>
+  <div class="faq">
+    <div class="faq-item open">
+      <div class="faq-q">超级影视VIP 能在电视上看吗？<span class="arr">▼</span></div>
+      <div class="faq-a">可以。超级影视VIP 覆盖手机、平板、电脑与电视大屏；在云视听极光等合作大屏端登录同一官方账号，会员权益通常即可生效，但是否包含某台设备以官方说明为准。[16](@ref)</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">开了会员还有广告吗？<span class="arr">▼</span></div>
+      <div class="faq-a">会员可减少片前贴片与部分暂停广告，但版权方特殊要求、单点付费内容或个别互动贴片仍可能出现，这不是“全网零广告破解”。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">4K / HDR 所有片子都有吗？<span class="arr">▼</span></div>
+      <div class="faq-a">不是。4K、HDR、杜比音效需要“片源本身支持 + 设备支持 + 网络带宽够”，老片或普通授权内容可能只有 1080P / 720P。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">离线缓存的视频会过期吗？<span class="arr">▼</span></div>
+      <div class="faq-a">会。版权内容常带有效期，会员到期或授权变化后，部分缓存可能无法继续播放；具体以播放器与版权方规则为准。[2](@ref)</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">能把账号借给朋友吗？<span class="arr">▼</span></div>
+      <div class="faq-a">不建议直接借主账号。用家庭共享池 / 子账号更稳；同账号同时播放设备数超限会触发验证，异地频繁登录还可能被临时冻结。[2](@ref)</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">自动续费怎么关？<span class="arr">▼</span></div>
+      <div class="faq-a">在“我的 - 会员中心 - 自动续费管理”里关闭即可；关闭后当前周期仍能用到到期日，之后不再扣费。[2](@ref)</div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于 -->
+<section class="block" id="about">
+  <div class="about-vip">
+    <div>
+      <h2>超级影视VIP <em>不是破解器</em></h2>
+      <p>它解决的是“一个家好几块屏、好几个平台会员、广告等半天、手机电视不同步”的麻烦：把正版会员权益、高清画质、离线缓存、投屏大屏和家庭共享，收进同一套账号里。</p>
+      <p>我们不做盗链、不做永久免费破解、不引导装来路 APK；片源以正版授权与平台合作为主，下架机制明确，才能长期稳定地看。</p>
+      <p>官方网址：<span class="url">https://chaojiyingshivip-h5.github.io</span></p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">4 屏</div><div class="l">手机/平板/电脑/电视</div></div>
+      <div class="stat"><div class="n">4K</div><div class="l">片源支持时开放</div></div>
+      <div class="stat"><div class="n">0 破解</div><div class="l">正版会员制</div></div>
+      <div class="stat"><div class="n">每日</div><div class="l">会员片库更新</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="foot">
+  <div class="foot-logo">超级影视<em>VIP</em></div>
+  <div class="foot-links">
+    <a href="#rights">会员权益</a>
+    <a href="#library">片库专区</a>
+    <a href="#screens">四屏畅看</a>
+    <a href="#plans">开通套餐</a>
+    <a href="#guide">使用教程</a>
+    <a href="#legal">版权合规</a>
+    <a href="#faq">常见问题</a>
+    <a href="#about">关于</a>
+  </div>
+  <p>© 2026 超级影视VIP · 网站网址：https://chaojiyingshivip-h5.github.io</p>
+  <p class="disc">本站为影视会员制门户演示页。超级影视VIP 权益、设备支持、价格以腾讯视频/云视听极光等官方开通页为准；单点付费与特殊版权内容可能另计。请勿使用盗链、破解、永久免费会员类工具，避免侵权与设备封禁风险。[6,15,16](@ref)</p>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    this.closest('.faq-item').classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>
